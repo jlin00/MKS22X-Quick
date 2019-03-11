@@ -40,7 +40,12 @@ public class Quick{
     return start;
   }
 
+  /*return the value that is the kth smallest value of the array.*/
+  public static int quickselect(int []data, int k){
+    return 0;
+  }
+
   public static void main(String[] args) {
-    
+
   }
 }
