@@ -5,7 +5,7 @@ public class Quick{
     if (data.length <= 1) return data.length;
 
     int random = (int)(Math.random() * data.length); //selects a random index of data
-    System.out.println(random);
+    //System.out.println(random);
 
     int temp = data[0]; //temporary storage to perform swap
     data[0] = data[random]; //performs the swap
@@ -47,13 +47,21 @@ public class Quick{
 
   public static int quickselectH(int[] data, int k, int start, int end){
     int pivot = partition(data, start, end);
-    if (pivot == k) return data[k]; //if index is same as k, return value
-    if (pivot < k) return quickselectH(data, k, start + 1, end); //if index is less than k, recur for right side
-    return quickselectH(data, k, start, end - 1); //if index is more than k, recur for left side
+    if (pivot == k) return data[pivot]; //if index is same as k, return value
+    if (pivot < k) return quickselectH(data, k, pivot + 1, end); //if index is less than k, recur for right side
+    return quickselectH(data, k, start, pivot - 1); //if index is more than k, recur for left side
   }
 
   public static void main(String[] args) {
     int[] data1 = {999,999,0,1,999,999};
-    System.out.println(quickselect(data1, 2)); //should print 999;
+    System.out.println(quickselect(data1, 1)); //should print 999;
+
+    int[]ary = { 2, 10, 15, 23, 0,  5};  //sorted :  {0,2,5,10,15,23}
+   System.out.println(quickselect( ary , 0 ));// would return 0
+   System.out.println(quickselect( ary , 1 ));//  would return 2
+   System.out.println(quickselect( ary , 2 ));//  would return 5
+   System.out.println(quickselect( ary , 3 ));//  would return 10
+   System.out.println(quickselect( ary , 4 ));// would return 15
+   System.out.println(quickselect( ary , 5 ));//  would return 23
   }
 }
