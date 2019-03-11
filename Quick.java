@@ -46,7 +46,10 @@ public class Quick{
   }
 
   public static int quickselectH(int[] data, int k, int start, int end){
-    return 0;
+    int pivot = partition(data, start, end);
+    if (pivot == k) return data[k]; //if index is same as k, return value
+    if (pivot < k) return quickselectH(data, k, start + 1, end); //if index is less than k, recur for right side
+    return quickselectH(data, k, start, end - 1); //if index is more than k, recur for left side
   }
 
   public static void main(String[] args) {
