@@ -41,11 +41,16 @@ public class Quick{
   }
 
   /*return the value that is the kth smallest value of the array.*/
-  public static int quickselect(int []data, int k){
+  public static int quickselect(int[] data, int k){
+    return quickselectH(data, k, 0, data.length - 1); //calls helper function
+  }
+
+  public static int quickselectH(int[] data, int k, int start, int end){
     return 0;
   }
 
   public static void main(String[] args) {
-
+    int[] data1 = {999,999,0,1,999,999};
+    System.out.println(quickselect(data1, 2)); //should print 999;
   }
 }
