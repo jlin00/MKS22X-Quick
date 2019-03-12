@@ -69,7 +69,11 @@ public class Quick{
   }
 
   public static void quicksort(int[] data){
-    
+    quicksortH(data, 0, data.length - 1); //calls helper method
+  }
+
+  public static void quicksortH(int[] data, int start, int end){
+
   }
 
   public static void main(String[] args) {
