@@ -55,6 +55,13 @@ public class Quick{
     return random;
   }
 
+  private int[] partitionDutch(int[] data, int lo, int hi){
+    int[] ary = new int[0];
+    //your code
+    //return an array [lt,gt]
+    return ary;
+  }
+
   /*return the value that is the kth smallest value of the array.*/
   public static int quickselect(int[] data, int k){
     int start = 0;
@@ -73,10 +80,26 @@ public class Quick{
   }
 
   public static void quicksortH(int[] data, int start, int end){
-
+    if (start < end){
+      int pivot = partition(data, start, end);
+      quicksortH(data, pivot + 1, end);
+      quicksortH(data, start, pivot - 1);
+    }
   }
 
+  /*
+  public static boolean sorted(int[] data){ //for testing purposes
+    for (int i = 1; i < data.length; i++){
+      if (data[i - 1] > data[i]){
+        return false;
+      }
+    }
+    return true;
+  }
+  */
+
   public static void main(String[] args) {
+    /*
     int[] data1 = {999,999,999,999,999,999};
     System.out.println(quickselect(data1, 0)); //should print 999;
 
@@ -102,6 +125,17 @@ public class Quick{
     System.out.println(quickselect(uniq, 500000)); //should be fast
     System.out.println(quickselect(dupes, 500000)); //should return 1
 
+
+    Random n = new Random();
+
+    int[] array = new int[Math.abs(n.nextInt() % 700000)];
+    for (int i = 0; i < array.length; i++){
+      array[i] = n.nextInt() % 1000;
+    }
+
+    quicksort(array);
+    System.out.println(sorted(array));
+    */
 
   }
 }
