@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Quick{
-  public static int partition(int[] data, int start, int end){
+  private static int partition(int[] data, int start, int end){
     if (start == end) return start; //if nothing needs to be sorted, just return index
 
     int random = (int)(Math.random() * data.length); //selects a random index of data, index of partition value
@@ -48,7 +48,7 @@ public class Quick{
   }
 
   public static int quickselectH(int[] data, int k, int start, int end){
-    int pivot = partition(data, start, end);
+    int pivot = partition(data, start, end); //pivot index
     if (pivot == k) return data[pivot]; //if index is same as k, return value
     if (pivot < k) return quickselectH(data, k, pivot + 1, end); //if index is less than k, recur for right side
     return quickselectH(data, k, start, pivot - 1); //if index is more than k, recur for left side
