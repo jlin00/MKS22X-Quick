@@ -4,7 +4,7 @@ public class Quick{
   private static int partition(int[] data, int start, int end){
     if (start == end) return start; //if nothing needs to be sorted, just return index
 
-    int random = (int)(Math.random() * data.length); //selects a random index of data, index of partition value
+    int random = (int)(Math.random() * (end - start + 1)) + start; //selects a random index of data, index of partition value
     //System.out.println(random); //for debugging purposes
 
     int pivot = data[random]; //stores the pivot value
@@ -44,22 +44,23 @@ public class Quick{
 
   /*return the value that is the kth smallest value of the array.*/
   public static int quickselect(int[] data, int k){
-    return quickselectH(data, k, 0, data.length - 1); //calls helper function
-  }
-
-  public static int quickselectH(int[] data, int k, int start, int end){
-    int pivot = partition(data, start, end); //pivot index
-    if (pivot == k) return data[pivot]; //if index is same as k, return value
-    if (pivot < k) return quickselectH(data, k, pivot + 1, end); //if index is less than k, recur for right side
-    return quickselectH(data, k, start, pivot - 1); //if index is more than k, recur for left side
+    int start = 0;
+    int end = data.length - 1;
+    int pivot = partition(data, start, end); //pibot index
+    while (pivot != k){
+      if (pivot > k) end = pivot - 1; //if index is greater than k, recur for left side
+      else start = pivot + 1; //if index is less than k, recur for right side
+      pivot = partition(data, start, end); //updated partition with new start and end
+    }
+    return data[pivot];
   }
 
   public static void main(String[] args) {
     int[] data1 = {999,999,0,1,999,999};
-    System.out.println(quickselect(data1, 1)); //should print 999;
+    //System.out.println(quickselect(data1, 1)); //should print 999;
 
     int[]ary = { 2, 10, 15, 23, 0,  5};  //sorted :  {0,2,5,10,15,23}
-   //System.out.println(quickselect( ary , 0 ));// would return 0
+   System.out.println(quickselect( ary , 0 ));// would return 0
    System.out.println(quickselect( ary , 1 ));//  would return 2
    System.out.println(quickselect( ary , 2 ));//  would return 5
    System.out.println(quickselect( ary , 3 ));//  would return 10
