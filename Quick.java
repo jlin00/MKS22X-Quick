@@ -15,7 +15,7 @@ public class Quick{
     else if (data[end] >= data[start] && data[start] >= data[random] || data[end] <= data[start] && data[start] <= data[random]){
       random = start; //if start is median, change index of partition
     }
-    System.out.println(data[random]); //debugging purposes
+    //System.out.println(data[random]); //debugging purposes
 
     int pivot = data[random]; //stores the pivot value
     data[random] = data[start]; //performs the swap with starting index
@@ -46,8 +46,8 @@ public class Quick{
       data[start] = pivot;
       random = start; //index of partition value changes
     }
-    else if (data[start] > pivot){
-      data[random] = data[start -1]; //performs the swap
+    else{
+      data[random] = data[start - 1]; //performs the swap
       data[start - 1] = pivot;
       random = start - 1; //index of partition value changes
     }
@@ -72,7 +72,7 @@ public class Quick{
     int[] data1 = {999,999,999,999,999,999};
     System.out.println(quickselect(data1, 0)); //should print 999;
 
-    /*
+
     int[] ary = { 2, 10, 15, 23, 0,  5};  //sorted : {0,2,5,10,15,23}
     System.out.println(quickselect( ary , 0 )); // would return 0
     System.out.println(quickselect( ary , 1 )); //  would return 2
@@ -81,19 +81,19 @@ public class Quick{
     System.out.println(quickselect( ary , 4 )); // would return 15
     System.out.println(quickselect( ary , 5 )); //  would return 23
 
-    int[] dupes = new int[10000];
-    for (int n = 0; n < 10000; n++){
+    int[] dupes = new int[100000];
+    for (int n = 0; n < 100000; n++){
       dupes[n] = 99;
     }
 
-    int[] uniq = new int[10000];
-    for (int n = 0; n < 10000; n++){
-      uniq[n] = (int)(Math.random() * 10000);
+    int[] uniq = new int[100000];
+    for (int n = 0; n < 100000; n++){
+      uniq[n] = (int)(Math.random() * 100000);
     }
 
-    System.out.println(quickselect(uniq, 5000)); //should be fast
-    System.out.println(quickselect(dupes, 5000)); //should return 1
-    */
+    System.out.println(quickselect(uniq, 50000)); //should be fast
+    System.out.println(quickselect(dupes, 50000)); //should return 1
+
 
   }
 }
