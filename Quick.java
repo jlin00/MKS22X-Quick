@@ -22,9 +22,19 @@ public class Quick{
         data[end] = temp;
         end--; //decrease end
       }
-      else{
+      else if (data[start] < pivot){ //if less than partition value, leave on left side
         start++; //increase start
       }
+      else{ //if equal, randomly place in left or right side
+        int rand = (int)(Math.random() * 2); //either 0 or 1
+        if (rand == 0){ //move to left side
+
+        }
+        else{ //move to right side
+
+        }
+      }
+
     }
 
     //move the partition value when start == end
@@ -33,7 +43,7 @@ public class Quick{
       data[start] = pivot;
       random = start; //index of partition value changes
     }
-    else{
+    else if (data[start] > pivot){
       data[random] = data[start -1]; //performs the swap
       data[start - 1] = pivot;
       random = start - 1; //index of partition value changes
