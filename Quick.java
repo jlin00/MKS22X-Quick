@@ -57,14 +57,14 @@ public class Quick{
 
   public static void main(String[] args) {
     int[] data1 = {999,999,0,1,999,999};
-    //System.out.println(quickselect(data1, 1)); //should print 999;
+    System.out.println(quickselect(data1, 2)); //should print 999;
 
-    int[]ary = { 2, 10, 15, 23, 0,  5};  //sorted :  {0,2,5,10,15,23}
-   System.out.println(quickselect( ary , 0 ));// would return 0
-   System.out.println(quickselect( ary , 1 ));//  would return 2
-   System.out.println(quickselect( ary , 2 ));//  would return 5
-   System.out.println(quickselect( ary , 3 ));//  would return 10
-   System.out.println(quickselect( ary , 4 ));// would return 15
-   System.out.println(quickselect( ary , 5 ));//  would return 23
+    int[]ary = { 2, 10, 15, 23, 0,  5};  //sorted : {0,2,5,10,15,23}
+   System.out.println(quickselect( ary , 0 )); // would return 0
+   System.out.println(quickselect( ary , 1 )); //  would return 2
+   System.out.println(quickselect( ary , 2 )); //  would return 5
+   System.out.println(quickselect( ary , 3 )); //  would return 10
+   System.out.println(quickselect( ary , 4 )); // would return 15
+   System.out.println(quickselect( ary , 5 )); //  would return 23
   }
 }
