@@ -68,6 +68,10 @@ public class Quick{
     return data[pivot];
   }
 
+  public static void quicksort(int[] data){
+    
+  }
+
   public static void main(String[] args) {
     int[] data1 = {999,999,999,999,999,999};
     System.out.println(quickselect(data1, 0)); //should print 999;
@@ -81,18 +85,18 @@ public class Quick{
     System.out.println(quickselect( ary , 4 )); // would return 15
     System.out.println(quickselect( ary , 5 )); //  would return 23
 
-    int[] dupes = new int[100000];
-    for (int n = 0; n < 100000; n++){
+    int[] dupes = new int[4500000];
+    for (int n = 0; n < 4500000; n++){
       dupes[n] = 99;
     }
 
-    int[] uniq = new int[100000];
-    for (int n = 0; n < 100000; n++){
-      uniq[n] = (int)(Math.random() * 100000);
+    int[] uniq = new int[4500000];
+    for (int n = 0; n < 4500000; n++){
+      uniq[n] = (int)(Math.random() * 4500000);
     }
 
-    System.out.println(quickselect(uniq, 50000)); //should be fast
-    System.out.println(quickselect(dupes, 50000)); //should return 1
+    System.out.println(quickselect(uniq, 500000)); //should be fast
+    System.out.println(quickselect(dupes, 500000)); //should return 1
 
 
   }
