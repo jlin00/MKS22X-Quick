@@ -4,8 +4,18 @@ public class Quick{
   private static int partition(int[] data, int start, int end){
     if (start == end) return start; //if nothing needs to be sorted, just return index
 
-    int random = (int)(Math.random() * (end - start + 1)) + start; //selects a random index of data, index of partition value
+    //int random = (int)(Math.random() * (end - start + 1)) + start; //selects a random index of data, index of partition value
     //System.out.println(random); //for debugging purposes
+
+    int random = data.length / 2; //automatically sets to index value to the middle value
+
+    if (data[start] >= data[end] && data[end] >= data[random] || data[start] <= data[end] && data[end] <= data[random]){
+      random = end; //if end is median, change index of partition
+    }
+    else if (data[end] >= data[start] && data[start] >= data[random] || data[end] <= data[start] && data[start] <= data[random]){
+      random = start; //if start is median, change index of partition
+    }
+    System.out.println(data[random]); //debugging purposes
 
     int pivot = data[random]; //stores the pivot value
     data[random] = data[start]; //performs the swap with starting index
@@ -16,25 +26,18 @@ public class Quick{
 
     //sort array according to partition value, beginning at start and ending at end
     while (start != end){ //if start is not equivalent to end
-      if (data[start] > pivot){ //if greater than partition value, move to end
+      int rand = (int)(Math.random() * 2); //either 1 or 0
+      if (data[start] > pivot || (data[start] == pivot && rand == 0)){ //if greater than partition value, move to end
         int temp = data[start]; //temporary storage for data[start]
         data[start] = data[end]; //swap with data[end]
         data[end] = temp;
         end--; //decrease end
+        //if (data[start] == pivot && rand == 0) System.out.println("left"); //debugging purposes
       }
-      else if (data[start] < pivot){ //if less than partition value, leave on left side
+      else{ //if less than partition value, leave on left side
         start++; //increase start
+        //if (data[start] == pivot) System.out.println("right"); //debugging purposes
       }
-      else{ //if equal, randomly place in left or right side
-        int rand = (int)(Math.random() * 2); //either 0 or 1
-        if (rand == 0){ //move to left side
-
-        }
-        else{ //move to right side
-
-        }
-      }
-
     }
 
     //move the partition value when start == end
@@ -66,15 +69,31 @@ public class Quick{
   }
 
   public static void main(String[] args) {
-    int[] data1 = {999,999,0,1,999,999};
-    System.out.println(quickselect(data1, 2)); //should print 999;
+    int[] data1 = {999,999,999,999,999,999};
+    System.out.println(quickselect(data1, 0)); //should print 999;
 
-    int[]ary = { 2, 10, 15, 23, 0,  5};  //sorted : {0,2,5,10,15,23}
-   System.out.println(quickselect( ary , 0 )); // would return 0
-   System.out.println(quickselect( ary , 1 )); //  would return 2
-   System.out.println(quickselect( ary , 2 )); //  would return 5
-   System.out.println(quickselect( ary , 3 )); //  would return 10
-   System.out.println(quickselect( ary , 4 )); // would return 15
-   System.out.println(quickselect( ary , 5 )); //  would return 23
+    /*
+    int[] ary = { 2, 10, 15, 23, 0,  5};  //sorted : {0,2,5,10,15,23}
+    System.out.println(quickselect( ary , 0 )); // would return 0
+    System.out.println(quickselect( ary , 1 )); //  would return 2
+    System.out.println(quickselect( ary , 2 )); //  would return 5
+    System.out.println(quickselect( ary , 3 )); //  would return 10
+    System.out.println(quickselect( ary , 4 )); // would return 15
+    System.out.println(quickselect( ary , 5 )); //  would return 23
+
+    int[] dupes = new int[10000];
+    for (int n = 0; n < 10000; n++){
+      dupes[n] = 99;
+    }
+
+    int[] uniq = new int[10000];
+    for (int n = 0; n < 10000; n++){
+      uniq[n] = (int)(Math.random() * 10000);
+    }
+
+    System.out.println(quickselect(uniq, 5000)); //should be fast
+    System.out.println(quickselect(dupes, 5000)); //should return 1
+    */
+
   }
 }
