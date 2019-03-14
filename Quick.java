@@ -93,14 +93,22 @@ public class Quick{
   }
 
   public static void quicksort(int[] data){
-    quicksortH(data, 0, data.length - 1); //calls helper method
+    quicksortD(data, 0, data.length - 1); //calls helper method
   }
 
   public static void quicksortH(int[] data, int start, int end){
     if (start < end){
+      int pivot = partition(data, start, end);
+      quicksortH(data, pivot + 1, end); //recur for right side
+      quicksortH(data, start, pivot - 1); //recur for left side
+    }
+  }
+
+  public static void quicksortD(int[] data, int start, int end){ //use dutch partition
+    if (start < end){
       int[] pivots = partitionDutch(data, start, end);
-      quicksortH(data, pivots[1] + 1, end);
-      quicksortH(data, start, pivots[0] - 1);
+      quicksortD(data, pivots[1] + 1, end); //recur for values greater than partition
+      quicksortD(data, start, pivots[0] - 1); //recur for values less than partition
     }
   }
 
@@ -139,11 +147,11 @@ public class Quick{
     System.out.println(quickselect(dupes, 50000000)); //should return 1
     */
 
-    int[] array = new int[8000000];
+    int[] array = new int[80000000];
     for (int i = 0;  i < array.length; i++){
-      array[i] = (int)(Math.random() * 90000);
+      array[i] = (int)(Math.random() * 100);
     }
-    System.out.println(sorted(array));
+    //System.out.println(sorted(array));
     quicksort(array);
     System.out.println(sorted(array));
 
