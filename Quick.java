@@ -56,10 +56,27 @@ public class Quick{
   }
 
   private int[] partitionDutch(int[] data, int lo, int hi){
-    int[] ary = new int[0];
-    //your code
-    //return an array [lt,gt]
-    return ary;
+    int pivot = data[lo]; //pivot is at start
+    int i = lo + 1;
+    while (i <= hi){ //less than or equal because you still have to sort middle element in one of the three partitions
+      if (data[i] < pivot){ //less than partition value
+        int temp = data[lo]; //perform swap between start and i
+        data[lo] = data[i];
+        data[i] = temp;
+        lo++; //increase lo
+        i++; //increase i
+      }
+      else if (data[i] == pivot){ //equal to partition value
+        i++; //increase i
+      }
+      else{
+        int temp = data[hi]; //performs swap between i and end
+        data[hi] = data[i];
+        data[i] = temp;
+        hi--; //decrease hi
+      }
+    }
+    return new int[]{lo, hi};
   }
 
   /*return the value that is the kth smallest value of the array.*/
@@ -87,16 +104,12 @@ public class Quick{
     }
   }
 
-  /*
-  public static boolean sorted(int[] data){ //for testing purposes
-    for (int i = 1; i < data.length; i++){
-      if (data[i - 1] > data[i]){
-        return false;
-      }
+  public static boolean sorted(int[] ary){
+    for (int i = 1; i < ary.length; i++){
+      if (ary[i - 1] > ary[i]) return false;
     }
     return true;
   }
-  */
 
   public static void main(String[] args) {
     /*
@@ -112,30 +125,27 @@ public class Quick{
     System.out.println(quickselect( ary , 4 )); // would return 15
     System.out.println(quickselect( ary , 5 )); //  would return 23
 
-    int[] dupes = new int[4500000];
-    for (int n = 0; n < 4500000; n++){
+    int[] dupes = new int[8000000];
+    for (int n = 0; n < 80000000; n++){
       dupes[n] = 99;
     }
 
-    int[] uniq = new int[4500000];
-    for (int n = 0; n < 4500000; n++){
-      uniq[n] = (int)(Math.random() * 4500000);
+    int[] uniq = new int[80000000];
+    for (int n = 0; n < 80000000; n++){
+      uniq[n] = (int)(Math.random() * 80000000);
     }
 
-    System.out.println(quickselect(uniq, 500000)); //should be fast
-    System.out.println(quickselect(dupes, 500000)); //should return 1
+    System.out.println(quickselect(uniq, 50000000)); //should be fast
+    System.out.println(quickselect(dupes, 50000000)); //should return 1
+    */
 
-
-    Random n = new Random();
-
-    int[] array = new int[Math.abs(n.nextInt() % 700000)];
-    for (int i = 0; i < array.length; i++){
-      array[i] = n.nextInt() % 1000;
+    int[] array = new int[8000000];
+    for (int i = 0;  i < array.length; i++){
+      array[i] = (int)(Math.random() * 90000);
     }
-
+    System.out.println(sorted(array));
     quicksort(array);
     System.out.println(sorted(array));
-    */
 
   }
 }
