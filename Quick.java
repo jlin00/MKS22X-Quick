@@ -55,7 +55,7 @@ public class Quick{
     return random;
   }
 
-  private int[] partitionDutch(int[] data, int lo, int hi){
+  private static int[] partitionDutch(int[] data, int lo, int hi){
     int pivot = data[lo]; //pivot is at start
     int i = lo + 1;
     while (i <= hi){ //less than or equal because you still have to sort middle element in one of the three partitions
@@ -83,7 +83,7 @@ public class Quick{
   public static int quickselect(int[] data, int k){
     int start = 0;
     int end = data.length - 1;
-    int pivot = partition(data, start, end); //pibot index
+    int pivot = partition(data, start, end); //pivot index
     while (pivot != k){
       if (pivot > k) end = pivot - 1; //if index is greater than k, recur for left side
       else start = pivot + 1; //if index is less than k, recur for right side
@@ -98,9 +98,9 @@ public class Quick{
 
   public static void quicksortH(int[] data, int start, int end){
     if (start < end){
-      int pivot = partition(data, start, end);
-      quicksortH(data, pivot + 1, end);
-      quicksortH(data, start, pivot - 1);
+      int[] pivots = partitionDutch(data, start, end);
+      quicksortH(data, pivots[1] + 1, end);
+      quicksortH(data, start, pivots[0] - 1);
     }
   }
 
