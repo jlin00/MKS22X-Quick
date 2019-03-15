@@ -56,7 +56,10 @@ public class Quick{
   }
 
   private static int[] partitionDutch(int[] data, int lo, int hi){
-    int pivot = data[lo]; //pivot is at start
+    int random = (int)(Math.random() * (hi - lo + 1)) + lo; //randomizes pivot
+    int pivot = data[random]; //pivot is at start
+    data[random] = data[lo]; //swap
+    data[lo] = pivot;
     int i = lo + 1;
     while (i <= hi){ //less than or equal because you still have to sort middle element in one of the three partitions
       if (data[i] < pivot){ //less than partition value
