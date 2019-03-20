@@ -82,6 +82,19 @@ public class Quick{
     return new int[]{lo, hi};
   }
 
+  //insertion sort
+  public static void insertionSort(int[] data, int start, int end){
+    int length = end - start + 1;
+    for (int i = 1; i < length; i++){
+      int old_val = data[start + i]; //keeps track of the value that is being shifted
+      int j;
+      for (j = i; j > 0 && old_val < data[start + j - 1]; j--){ //loops through backwards to calculate new_ind
+          data[start + j] = data[start + j - 1]; //shifts down value in that spot by one
+        }
+      data[start + j] = old_val; //performs the insertion
+    }
+  }
+
   /*return the value that is the kth smallest value of the array.*/
   public static int quickselect(int[] data, int k){
     int start = 0;
@@ -108,11 +121,18 @@ public class Quick{
   }
 
   public static void quicksortD(int[] data, int start, int end){ //use dutch partition
-    if (start < end){
-      int[] pivots = partitionDutch(data, start, end);
-      quicksortD(data, pivots[1] + 1, end); //recur for values greater than partition
-      quicksortD(data, start, pivots[0] - 1); //recur for values less than partition
+    /*
+    if (start >= end){
+      return;
     }
+    */
+    if (end - start < 50){
+      insertionSort(data, start, end);
+      return;
+    }
+    int[] pivots = partitionDutch(data, start, end);
+    quicksortD(data, pivots[1] + 1, end); //recur for values greater than partition
+    quicksortD(data, start, pivots[0] - 1); //recur for values less than partition
   }
 
   public static boolean sorted(int[] ary){
