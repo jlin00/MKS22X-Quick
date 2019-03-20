@@ -126,7 +126,7 @@ public class Quick{
       return;
     }
     */
-    if (end - start < 50){
+    if (end - start < 10){
       insertionSort(data, start, end);
       return;
     }
